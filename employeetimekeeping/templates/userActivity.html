@@ -1,0 +1,62 @@
+{% extends "index.html"%}
+
+{%block content%}
+<form method="post", action="">
+    <button type="submit" class="btn btn-success" name="start_shift" value="Start shift">Start Shift</button>
+    <button type="submit" class="btn btn-success" name="start_lunch" value="Start lunch">Start Lunch</button>
+    <button type="submit" class="btn btn-success" name="end_lunch" value="End lunch">End Lunch</button>
+    <button type="submit" class="btn btn-success" name="start_break" value="Start break">Start Break</button>
+    <button type="submit" class="btn btn-success" name="end_break" value="End break">End Break</button>
+    <button type="submit" class="btn btn-success" name="end_shift" value="End shift">End Shift</button>
+</form>
+    <span></span>
+    <table class="table topSpace">
+        <thead>
+          <tr>
+            <th scope="col">Shift start time</th>
+            <th scope="col">Lunch start time </th>
+            <th scope="col">Lunch end time</th>
+            <th scope="col">Break start time </th>
+            <th scope="col">Break end time</th>
+            <th scope="col">Shift end time</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for activity in activities %}
+                <tr>
+                    <td>
+                        {% if activity.shift_start %}
+                            {{activity.shift_start.strftime('%y-%m-%d %a %H:%M:%S')}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if activity.lunch_start %}
+                            {{activity.lunch_start.strftime('%y-%m-%d %a %H:%M:%S')}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if activity.lunch_end %}
+                            {{activity.lunch_end.strftime('%y-%m-%d %a %H:%M:%S')}}
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if activity.break_start %}
+                            {{activity.break_start.strftime('%y-%m-%d %a %H:%M:%S')}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if activity.break_end %}
+                            {{activity.break_end.strftime('%y-%m-%d %a %H:%M:%S')}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if activity.shift_end %}
+                            {{activity.shift_end.strftime('%y-%m-%d %a %H:%M:%S')}}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content%}
